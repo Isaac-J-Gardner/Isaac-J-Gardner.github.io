@@ -1,44 +1,227 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Isaac Gardner</title>
-    </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111113;
+      --bg-subtle: #18181b;
+      --border: #27272a;
+      --text: #d4d4d8;
+      --text-dim: #71717a;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
 
-    <body>
-        <!-- this is a comment in HTML-->
-        <h1>Hello World</h1>
-        <P>Welcome to my website! <br> I'm hosted with GitHub Pages.</p>
-        <button>test</BUTTON><br> <!-- <br> has to be after the terminator for things like buttons that dont 
-                                        automatically break the line. placing <br> in the button container
-                                        does nothing.-->
-        <!-- HTML is case insensitive as shown above by the capital P and BUTTOn-->
-        <img src = "http://www.sololearn.com/images/tree.jpg" alt = "This is an attribute, the image is a tree"> <br>
-        <b>this text is in BOLD</b>
-        <p><i> and this text is in italics</i><br>
-        <b><i> is this both??</i></b><br>
-        <u>Underlined</u></p>
-        <strong>FOR THE LOVE OF GOD READ <b><u><em>THIS!</em></u></b> </strong><br>
-        <!-- em is for emphasise, same as italics when displayed,
-             but a screen reader will verbally stress the word as well.-->
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        <a href="https://www.youtube.com/watch?v=gOioxltfh48">thats right, we got hyper text in this bitch</a>
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+    }
 
-        <h2>lazy list of hot drinks in order of taste</h2>
-        <ol>
-            <li>Mocha</li>
-            <li>Latte</li>
-            <li>instant Coffee</li>
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover { text-decoration-color: var(--text-dim); }
 
-            <li>Tea</li>
-        </ol>
-        <img src = "http://www.sololearn.com/images/tree.jpg" alt = "scaled image of the tree above, made it super thin"
-        width = "50" height = "300">
-        <br>
-        <form>
-            <label for="card">big number on the front of you credit card:</label>
-            <input type="text" id="card"><br>
-            <label for="data">can i steal your data? -> </label>
-            <input type="radio" id="data"><br>
-        </form>
-    </body>
+    .page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      font-family: var(--mono);
+    }
+
+    .header-text h1 {
+      font-family: var(--sans);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .header-text p {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 0.15rem;
+    }
+    .header-links {
+      margin-top: 0.35rem;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      font-family: var(--mono);
+    }
+    .header-links a { color: var(--text-dim); }
+    .header-links a:hover { color: var(--text); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 3rem; }
+
+    section h2 {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      color: var(--text);
+      max-width: 520px;
+    }
+
+    /* ── Entry list ── */
+    .entries { list-style: none; }
+
+    .entries li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .entries li:first-child { border-top: 1px solid var(--border); }
+
+    .entry-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .entry-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 2.5rem 1.25rem 4rem; }
+      .entries li { flex-direction: column; gap: 0.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <header>
+      <div class="avatar">
+        <!--
+          Replace placeholder with your image:
+          <img src="avatar.jpg" alt="Your Name">
+        -->
+        <div class="avatar-placeholder">img</div>
+      </div>
+      <div class="header-text">
+        <h1>Isaac Gardner</h1>
+        <p>Meng EE at the University of Manchester. Interested in Neuromorphics, Computational Neuroscience, AI, and Philosophy</p>
+        <div class="header-links">
+          <a href="https://github.com/Isaac-J-Gardner/">github</a>
+          <a href="mailto:isaacjamesgardner@hotmail.com">email</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <h2>About</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul class="entries">
+        <li>
+          <a href="#" class="entry-title"></a>
+          <span class="entry-meta">year</span>
+        </li>
+        <li>
+          <a href="#" class="entry-title"></a>
+          <span class="entry-meta"></span>
+        </li>
+        <li>
+          <a href="#" class="entry-title"></a>
+          <span class="entry-meta"></span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul class="entries">
+        <li>
+          <a href="#" class="entry-title"></a>
+          <span class="entry-meta"></span>
+        </li>
+        <li>
+          <a href="#" class="entry-title"></a>
+          <span class="entry-meta"></span>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      &copy; 2026
+    </footer>
+
+  </div>
+
+</body>
 </html>
